@@ -2,11 +2,12 @@ import React from 'react';
 import { Menu, X } from 'lucide-react';
 
 interface MobileMenuProps {
+  items: string[];
   isOpen: boolean;
   onToggle: () => void;
 }
 
-export default function MobileMenu({ isOpen, onToggle }: MobileMenuProps) {
+export default function MobileMenu({ items, isOpen, onToggle }: MobileMenuProps) {
   return (
     <div className="md:hidden">
       <button onClick={onToggle} className="p-2">
@@ -19,7 +20,7 @@ export default function MobileMenu({ isOpen, onToggle }: MobileMenuProps) {
       {isOpen && (
         <nav className="absolute top-16 left-0 right-0 bg-yellow-50 border-b border-yellow-100 shadow-lg">
           <ul className="py-4">
-            {['Overview', 'Problem', 'Solution', 'Roadmap', 'Impact', 'Team'].map((item) => (
+            {items.map((item) => (
               <li key={item}>
                 <a
                   href={`#${item.toLowerCase()}`}

@@ -2,7 +2,12 @@ import React from 'react';
 import { Shield, Zap, AlertTriangle, ArrowRight } from 'lucide-react';
 import StatsCard from './StatsCard';
 
-export default function Hero() {
+interface HeroProps {
+  onDemoClick: () => void;
+  onGetStartedClick: () => void;
+}
+
+export default function Hero({ onDemoClick, onGetStartedClick }: HeroProps) {
   return (
     <section className="min-h-[90vh] bg-gradient-to-b from-yellow-50 to-white flex items-center py-12 md:py-20">
       <div className="container mx-auto px-4">
@@ -24,11 +29,17 @@ export default function Hero() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <button className="inline-flex items-center justify-center px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-all font-mono group">
+              <button 
+                onClick={onGetStartedClick}
+                className="inline-flex items-center justify-center px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-all font-mono group"
+              >
                 Get Started
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </button>
-              <button className="inline-flex items-center justify-center px-6 py-3 border-2 border-emerald-600 text-emerald-600 rounded-lg hover:bg-emerald-600 hover:text-white transition-all font-mono">
+              <button 
+                onClick={onDemoClick}
+                className="inline-flex items-center justify-center px-6 py-3 border-2 border-emerald-600 text-emerald-600 rounded-lg hover:bg-emerald-600 hover:text-white transition-all font-mono"
+              >
                 View Demo
               </button>
             </div>

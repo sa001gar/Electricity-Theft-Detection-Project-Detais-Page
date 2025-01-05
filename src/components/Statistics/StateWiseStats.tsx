@@ -1,4 +1,5 @@
 import React from 'react';
+import Table from '../common/Table/Table';
 
 const stateData = [
   { state: 'Maharashtra', percentage: 14.2, cost: 2800 },
@@ -11,46 +12,31 @@ const stateData = [
   { state: 'Rajasthan', percentage: 17.8, cost: 2500 }
 ];
 
+const columns = [
+  { key: 'state', header: 'State' },
+  { 
+    key: 'percentage', 
+    header: 'Loss %', 
+    align: 'right' as const,
+    className: 'text-emerald-600'
+  },
+  { 
+    key: 'formattedCost', 
+    header: 'Annual Cost (Cr)', 
+    align: 'right' as const
+  }
+];
+
 export default function StateWiseStats() {
+  const formattedData = stateData.map(item => ({
+    ...item,
+    formattedCost: `₹${item.cost}`
+  }));
+
   return (
     <div className="bg-white rounded-xl shadow-lg p-4">
       <h3 className="font-mono text-xl font-bold mb-6">State-wise Electricity Loss</h3>
-      <div className="overflow-x-auto">
-        <div className="inline-block min-w-full">
-          <div className="shadow-sm overflow-hidden">
-            <table className="min-w-full border-separate border-spacing-0">
-              <thead className="bg-yellow-50">
-                <tr>
-                  <th className="sticky left-0 bg-yellow-50 px-4 py-3 text-left font-mono text-sm border-b border-yellow-100">
-                    State
-                  </th>
-                  <th className="px-4 py-3 text-right font-mono text-sm border-b border-yellow-100">
-                    Loss %
-                  </th>
-                  <th className="px-4 py-3 text-right font-mono text-sm border-b border-yellow-100 whitespace-nowrap">
-                    Annual Cost (Cr)
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white">
-                {stateData.map((item) => (
-                  <tr key={item.state} className="hover:bg-yellow-50 transition-colors">
-                    <td className="sticky left-0 bg-inherit px-4 py-3 text-sm border-b border-yellow-100">
-                      {item.state}
-                    </td>
-                    <td className="px-4 py-3 text-right font-mono text-sm text-emerald-600 border-b border-yellow-100">
-                      {item.percentage}%
-                    </td>
-                    <td className="px-4 py-3 text-right font-mono text-sm border-b border-yellow-100">
-                      ₹{item.cost}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+      <Table columns={columns} data={formattedData} />
     </div>
   );
 }

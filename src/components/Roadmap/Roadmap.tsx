@@ -3,33 +3,27 @@ import { CheckCircle2, Circle } from 'lucide-react';
 
 const milestones = [
   {
-    date: 'Q1 2024',
-    title: 'Project Initiation',
-    description: 'Research and planning phase, team formation, and initial prototype design.',
+    date: 'Phase 1',
+    title: 'Research & Planning',
+    description: 'Problem analysis, technology selection, and architecture design.',
     completed: true
   },
   {
-    date: 'Q2 2024',
-    title: 'Data Collection',
-    description: 'Sensor deployment, data gathering from multiple distribution points.',
+    date: 'Phase 2',
+    title: 'Core Development',
+    description: 'AI model development, sensor integration, and data processing pipeline.',
     completed: true
   },
   {
-    date: 'Q3 2024',
-    title: 'AI Model Development',
-    description: 'Training the neural network, pattern recognition system implementation.',
-    completed: false
-  },
-  {
-    date: 'Q4 2024',
+    date: 'Phase 3',
     title: 'Testing & Validation',
-    description: 'Field testing, system optimization, and performance validation.',
+    description: 'System testing with real-world data and performance optimization.',
     completed: false
   },
   {
-    date: 'Q1 2025',
-    title: 'Full Deployment',
-    description: 'System rollout across all target locations and monitoring setup.',
+    date: 'Phase 4',
+    title: 'Deployment',
+    description: 'Full-scale implementation and monitoring setup.',
     completed: false
   }
 ];
@@ -41,10 +35,8 @@ export default function Roadmap() {
         <h2 className="text-4xl font-mono font-bold text-center mb-16">Project Roadmap</h2>
         <div className="max-w-4xl mx-auto">
           <div className="relative">
-            {/* Timeline line */}
             <div className="absolute left-4 sm:left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-emerald-200" />
             
-            {/* Milestones */}
             <div className="space-y-12">
               {milestones.map((milestone, index) => (
                 <div key={milestone.title} className={`relative ${index % 2 === 0 ? 'sm:pr-1/2' : 'sm:pl-1/2 sm:ml-auto'}`}>

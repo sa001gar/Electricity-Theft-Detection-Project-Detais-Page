@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Table from '../common/Table/Table';
 
 const globalData = [
   {
@@ -23,9 +24,38 @@ const globalData = [
   }
 ];
 
+const columns = [
+  { key: 'rank', header: 'Rank' },
+  { 
+    key: 'countryDisplay', 
+    header: 'Country'
+  },
+  { 
+    key: 'formattedLoss', 
+    header: 'Loss %', 
+    align: 'right' as const,
+    className: 'text-emerald-600'
+  }
+];
+
 export default function GlobalRankings() {
-  const [selectedYear, setSelectedYear] = React.useState(2023);
+  const [selectedYear, setSelectedYear] = useState(2023);
   const yearData = globalData.find(d => d.year === selectedYear)?.countries || [];
+
+  const formattedData = yearData.map(item => ({
+    ...item,
+    countryDisplay: (
+      <div className="flex items-center gap-2">
+        {item.country}
+        {item.country === 'India' && (
+          <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full">
+            Current
+          </span>
+        )}
+      </div>
+    ),
+    formattedLoss: `${item.loss}%`
+  }));
 
   return (
     <div className="bg-white rounded-xl shadow-lg p-4">
@@ -47,52 +77,11 @@ export default function GlobalRankings() {
           ))}
         </div>
       </div>
-      <div className="overflow-x-auto">
-        <div className="inline-block min-w-full">
-          <div className="shadow-sm overflow-hidden">
-            <table className="min-w-full border-separate border-spacing-0">
-              <thead className="bg-yellow-50">
-                <tr>
-                  <th className="sticky left-0 bg-yellow-50 px-4 py-3 text-left font-mono text-sm border-b border-yellow-100">
-                    Rank
-                  </th>
-                  <th className="px-4 py-3 text-left font-mono text-sm border-b border-yellow-100">
-                    Country
-                  </th>
-                  <th className="px-4 py-3 text-right font-mono text-sm border-b border-yellow-100">
-                    Loss %
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white">
-                {yearData.map((item) => (
-                  <tr 
-                    key={item.country} 
-                    className={`hover:bg-yellow-50 transition-colors ${
-                      item.country === 'India' ? 'bg-yellow-50' : ''
-                    }`}
-                  >
-                    <td className="sticky left-0 bg-inherit px-4 py-3 font-mono text-sm border-b border-yellow-100">
-                      {item.rank}
-                    </td>
-                    <td className="px-4 py-3 border-b border-yellow-100">
-                      {item.country}
-                      {item.country === 'India' && (
-                        <span className="ml-2 text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full">
-                          Current
-                        </span>
-                      )}
-                    </td>
-                    <td className="px-4 py-3 text-right font-mono text-sm text-emerald-600 border-b border-yellow-100">
-                      {item.loss}%
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+      <Table 
+        columns={columns} 
+        data={formattedData}
+        highlightRow={(row) => row.country === 'India'}
+      />
     </div>
   );
 }

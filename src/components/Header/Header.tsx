@@ -2,6 +2,17 @@ import React, { useState } from 'react';
 import { Zap } from 'lucide-react';
 import MobileMenu from './MobileMenu';
 
+const navItems = [
+  'Overview',
+  'Problem',
+  'Solution',
+  'Statistics',
+  'Code',
+  'Demo',
+  'Roadmap',
+  'Impact'
+];
+
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -15,7 +26,7 @@ export default function Header() {
         
         <nav className="hidden md:block">
           <ul className="flex gap-6">
-            {['Overview', 'Problem', 'Solution', 'Roadmap', 'Impact', 'Team'].map((item) => (
+            {navItems.map((item) => (
               <li key={item}>
                 <a
                   href={`#${item.toLowerCase()}`}
@@ -28,7 +39,11 @@ export default function Header() {
           </ul>
         </nav>
 
-        <MobileMenu isOpen={isMenuOpen} onToggle={() => setIsMenuOpen(!isMenuOpen)} />
+        <MobileMenu 
+          items={navItems}
+          isOpen={isMenuOpen} 
+          onToggle={() => setIsMenuOpen(!isMenuOpen)} 
+        />
       </div>
     </header>
   );
