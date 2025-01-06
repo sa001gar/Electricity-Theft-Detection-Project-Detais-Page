@@ -46,8 +46,8 @@ export default function Hero({ onDemoClick, onGetStartedClick }: HeroProps) {
 
             <div className="grid grid-cols-3 gap-4 pt-8 max-w-lg mx-auto lg:mx-0">
               {[
-                { label: 'Detection Rate', value: '99.9%' },
-                { label: 'Cost Savings', value: '$2.5M' },
+                { label: 'Detection Rate', value: '90.05%' },
+                { label: 'Cost Savings', value: 'Effective' },
                 { label: 'Grid Stability', value: '95%' }
               ].map(({ label, value }) => (
                 <div key={label} className="text-center">
@@ -65,13 +65,13 @@ export default function Hero({ onDemoClick, onGetStartedClick }: HeroProps) {
                 <StatsCard
                   icon={Shield}
                   title="Protection"
-                  value="99.9%"
+                  value="90.05%"
                   description="Accuracy in Detection"
                 />
                 <StatsCard
                   icon={AlertTriangle}
                   title="Prevention"
-                  value="85%"
+                  value="75%"
                   description="Theft Reduction"
                 />
               </div>
@@ -79,7 +79,7 @@ export default function Hero({ onDemoClick, onGetStartedClick }: HeroProps) {
                 <StatsCard
                   icon={Zap}
                   title="Savings"
-                  value="$2.5M"
+                  value="$2.5B"
                   description="Annual Recovery"
                 />
               </div>

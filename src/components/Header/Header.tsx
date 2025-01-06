@@ -9,7 +9,7 @@ const navItems = [
   'Statistics',
   'Code',
   'Demo',
-  'Roadmap',
+  // 'Roadmap',
   'Impact'
 ];
 
@@ -21,7 +21,7 @@ export default function Header() {
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Zap className="w-8 h-8 text-emerald-600" />
-          <span className="font-mono text-xl font-bold">ElectroGuard AI</span>
+          <span className="font-mono text-xl font-bold">ElectroGuard</span>
         </div>
         
         <nav className="hidden md:block">
