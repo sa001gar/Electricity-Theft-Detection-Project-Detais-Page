@@ -1,41 +1,23 @@
-import React, { useState } from 'react';
-import Header from './components/Header/Header';
-import Hero from './components/Hero/Hero';
-import Solution from './components/Solution/Solution';
-import Statistics from './components/Statistics/Statistics';
-import CodeSnippets from './components/CodeSnippets/CodeSnippets';
-import Team from './components/Team/Team';
-import Footer from './components/Footer/Footer';
-import DemoModal from './components/Demo/DemoModal';
-import GetStartedModal from './components/GetStarted/GetStartedModal';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Dashboard from './components/Dashboard';
+import AlertHistory from './components/AlertHistory';
+import Navbar from './components/Navbar';
 
-export default function App() {
-  const [isDemoOpen, setIsDemoOpen] = useState(false);
-  const [isGetStartedOpen, setIsGetStartedOpen] = useState(false);
-
+function App() {
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
-      <main>
-        <Hero 
-          onDemoClick={() => setIsDemoOpen(true)}
-          onGetStartedClick={() => setIsGetStartedOpen(true)}
-        />
-        <Solution />
-        <Statistics />
-        <CodeSnippets />
-        <Team />
-      </main>
-      <Footer />
-      
-      <DemoModal 
-        isOpen={isDemoOpen}
-        onClose={() => setIsDemoOpen(false)}
-      />
-      <GetStartedModal
-        isOpen={isGetStartedOpen}
-        onClose={() => setIsGetStartedOpen(false)}
-      />
-    </div>
+    <Router>
+      <div className="min-h-screen bg-gray-100">
+        <Navbar />
+        <div className="container mx-auto px-4 py-8">
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/alerts" element={<AlertHistory />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
+
+export default App;
